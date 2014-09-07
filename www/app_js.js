@@ -1681,16 +1681,19 @@ function login(user,pass)
 	{
 		user=$.trim($('#home_input_username').val());
 		pass=$.trim($('#home_input_password').val());
+
 	}
 	if(!user||!pass){showMessage('Please enter your login information.');return;}
+    var dataString = 'username='+ user + '&password='+ pass;
 	$.ajax({
-		url:'http://www.formvote.com/mobile/login_api_v2.php',
+		url:'http://www.theleadseeker.com/azunu/api/check.php',
 		type:'POST',
 		dataType:'json',
-		data:{'user':user,'pass':pass},
+		cache: false,
+		data: dataString,
 		success:function(object)
 		{
-			if(object.passed)
+            if(object.username)
 			{
 				window.localStorage.setItem('formvote_user',JSON.stringify(object));
 				formvote_user=object;
