@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Formvote App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="jquery.mobile.structure-1.2.0.min.css" />
+<link rel="stylesheet" href="css_global.css" />
+<script src="jquery-1.8.2.min.js"></script>
+<script src="override.js"></script>
+<script src="jquery.mobile-1.2.0.min.js"></script>
+<script src="app_js.js"></script>
+<script src="jquery.ba-bbq.min.js"></script>
+<script src="phonegap.js"></script>
+<script src="childbrowser.js"></script>
+</head>
+<body>
+<!-- HOME PAGE -->
+<div data-role="page" id="filler" style="background:#000;">
+</div><!-- /page -->
+
+<!-- HOME FEED PAGE -->
+<div data-role="page" id="home_feed_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div>
+	<div class="hover_menu"></div>
+    <div class="feed_switcher">
+    	<div class="tab" onclick="load_friends_feed();"><span>Friends</span></div>
+        <div class="tab" onclick="load_public_feed();"><span>Explore</span></div>
+        <div class="reload"><img src="images/home_reload.png"></div>
+    </div>
+    <div class="post_loader">
+    	<div class="text">Posting...</div>
+        <div class="load_bar"><div class="grey_bar"><div class="blue_bar"></div></div></div>
+    </div>
+    <div class="feed_wrapper" id="home_feed_wrapper"></div>
+    <div class="see_more_button">See More Posts</div>
+    <!-- /content -->
+</div><!-- /page -->
+
+<!-- PROFILE PAGE -->
+<div data-role="page" id="profile_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div> 
+	<div class="hover_menu"></div>
+    <div id="profile_block_wrapper"></div>
+    <div class="feed_wrapper" id="feed_wrapper_profile"></div>
+    <div class="see_more_button" onclick="see_more();">See More Posts</div>
+    <!-- /content -->
+</div><!-- /page -->
+
+<!-- MESSAGES PAGE -->
+<div data-role="page" id="messages_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div>
+	<div class="hover_menu"></div>
+    <div id="messages_wrapper"></div>
+    <!-- /content -->
+</div><!-- /page -->
+
+<!-- NOTIFICATION PAGE -->
+<div data-role="page" id="notifications_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div>
+	<div class="hover_menu"></div>
+    <div id="notifications_wrapper"></div>
+    <!-- /content -->
+</div><!-- /page -->
+
+
+<!-- SETTINGS PAGE -->
+<div data-role="page" id="settings_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div> 
+	<div class="hover_menu"></div>
+    <div id="settings_wrapper"></div>
+</div><!-- /page -->
+
+<!-- SETTINGS-EXTENDED PAGE -->
+<div data-role="page" id="settings_extended_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div> 
+	<div class="hover_menu"></div>
+    <div id="settings_extended_wrapper">
+    </div>
+</div><!-- /page -->
+
+<!-- COMMENTS PAGE -->
+<div data-role="page" id="comments_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div>
+	<div class="hover_menu"></div>
+    <div id="comments_wrapper"></div>
+</div><!-- /page -->
+
+<!-- SEARCH PAGE -->
+<div data-role="page" id="search_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div>
+	<div class="hover_menu"></div>
+    <div class="search_bar_wrapper">
+    	<div class="input_block">
+        	<div class="search_icon"></div>
+            <div class="clear_icon" onclick="clear_search();"></div>
+        	<div class="input_wrapper"><input class="search_bar" type="text" placeholder="Search names or usernames"></div>
+        </div>
+    </div>
+    <div class="feed_wrapper" id="search_results_wrapper"></div>
+</div><!-- /page -->
+
+<!-- MES-SES PAGE -->
+<div data-role="page" id="mes_ses_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div>
+	<div class="hover_menu"></div>
+    <div id="mes_ses_hold"></div>
+</div><!-- /page -->
+
+<!-- LIKES PAGE -->
+<div data-role="page" id="likes_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div>
+	<div class="hover_menu"></div>
+    <div id="likes_wrapper"></div>
+</div><!-- /page -->
+
+
+<!-- FB FRIENDS PAGE -->
+<div data-role="page" id="friends_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div>
+	<div class="hover_menu"></div>
+    <div id="friends_wrapper"></div>
+</div><!-- /page -->
+
+<!-- POST PAGE -->
+<div data-role="page" id="post_page" class="post_page">
+	<div data-role="header" data-position="fixed" data-id="app_head">
+        <div class="navigation_bar">
+        	<div class="profile_img_wrapper"><div class="profile_image"></div></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_1 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_2 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_3 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_4 middle_button"></div>
+            <div class="nav_bar_line"></div>
+            <div class="nav_button_icon">
+            	<img src="images/post_open_btn.png" class="bubble" />
+                <img src="images/small_icon_back.png" class="back" />
+            </div>
+		</div>
+	</div><!-- /header -->
+	<div class="information"></div>
+	<div class="hover_menu"></div>
+    <div id="post_wrapper"></div>
+</div><!-- /page -->
+
+<!-- IMAGE PAGE -->
+<div data-role="page" id="image_page"><div class="image_wrapper"></div></div>
+<!-- /page -->
+
+<!-- HOME PAGE -->
+<div data-role="page" id="home">
+	<div data-role="header" data-position="fixed" data-id="app_home_head">
+    	<div class="navigation_bar_home">
+            <div class="logo"></div>
+        	<div class="button_wrapper">
+            	<input data-role="none" type="button" class="button" value="Log In" onClick="load_intro_page('login');">
+                <input data-role="none" type="button" class="button" value="Sign Up" onClick="load_intro_page('register');">
+            </div>
+		</div>
+	</div><!-- /header -->
+    <div class="home_fade_effect"></div>
+    <div class="home_tab">Welcome to Formvote</span></div>
+    <div class="feed_wrapper" id="intro_feed"></div>
+</div><!-- /page -->
+
+<!-- LOGIN PAGE -->
+<div data-role="page" id="login_page">
+	<div data-role="header" data-position="fixed" data-id="app_home_head">
+    	<div class="navigation_bar_home">
+            <div class="logo center"></div>
+            <div class="back_button"></div>
+		</div>
+	</div><!-- /header -->
+    <div class="information" style="top:54px;"></div>
+    <div class="home_content">
+    	<form data-role="none" data-ajax="false" onsubmit="login(); return false;">
+        	<div class="input_set">
+            	<div class="block"><input id="home_input_username" type="text" placeholder="Enter Username or Email"></div>
+                <div class="block"><input id="home_input_password" type="password" placeholder="Enter Password"></div>
+            </div>
+            <input data-role="none" type="submit" class="button login_button" value="Log In">
+        </form>
+    </div>
+</div><!-- /page -->
+
+<!-- REGISTER PAGE -->
+<div data-role="page" id="register_page">
+	<div data-role="header" data-position="fixed" data-id="app_home_head">
+    	<div class="navigation_bar_home">
+            <div class="logo center"></div>
+            <div class="back_button"></div>
+		</div>
+	</div><!-- /header -->
+    <div class="information" style="top:54px;"></div>
+    <div class="home_content">
+    	<form id="register_form" data-role="none" data-ajax="false" onsubmit="signup();return false;">
+        	<div class="input_set">
+            	<div class="block"><input name="fullname" type="text" placeholder="Full Name"></div>
+                <div class="block" id="register_select_wrapper"></div>
+            </div>
+            <div class="input_set">
+            	<div class="block"><input name="email" type="text" placeholder="Email Address"></div>
+                <div class="block"><input name="username" type="text" placeholder="Username"></div>
+                <div class="block"><input name="password" type="password" placeholder="Password"></div>
+            </div>
+            <input data-role="none" type="submit" class="button signup_button" value="Sign Up">
+        </form>
+        <div class="agreement">By tapping Sign Up, you agree to our Terms and Privacy Policy available on Formvote.com</div>
+    </div>
+</div><!-- /page -->
+
+
+</body>
+</html>
+

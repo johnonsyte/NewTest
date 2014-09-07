@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+xmlns:gap = "http://phonegap.com/ns/1.0"
+id = "N4RB3F9K77.com.formvote.formvoteapp"
+versionCode="4"
+version="2.0.1">
+
+<name>Formvote</name>
+<description>Formvote App</description>
+<author href="http://www.formvote.com" email="marriott@formvote.com">Marriott Perez</author>
+
+<icon src="icon.png" />
+<icon src="icons/ios/icon.png" width="57" height="57" />
+<icon src="icons/ios/icon_at_2x.png" width="114" height="114" />
+<icon src="icons/android/ldpi.png" gap:platform="android" gap:density="ldpi" />
+<icon src="icons/android/mdpi.png" gap:platform="android" gap:density="mdpi" />
+<icon src="icons/android/hdpi.png" gap:platform="android" gap:density="hdpi" />
+<icon src="icons/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+
+<gap:splash src="splash.png" />
+<gap:splash src="splash/ios/Default_iphone5.png" width="640" height="1136" />
+<gap:plugin name="ChildBrowser" /><!-- latest release -->
+<access origin="http://formvote.com" subdomains="true" browserOnly="true" />
+<access origin="http://youtube.com" subdomains="true" browserOnly="true" />
+<access origin="http://facebook.com" subdomains="true" browserOnly="true" />
+<access origin="https://facebook.com" subdomains="true" browserOnly="true" />
+<access origin="http://facebook.net" subdomains="true" />
+<access origin="https://facebook.net" subdomains="true" />
+<access origin="http://fbcdn.net" subdomains="true" />
+<access origin="https://akamaihd.net" subdomains="true" />
+<preference name="phonegap-version" value="2.0.0" />
+<preference name="prerendered-icon" value="true" />
+<preference name="orientation" value="portrait" />
+<preference name="target-device" value="handset" />
+<preference name="webviewbounce" value="false" />
+<preference name="detect-data-types" value="false" />
+<preference name="load-url-timeout" value="60000" />
+
+<preference name="permissions" value="none"/>
+<feature name="http://api.phonegap.com/1.0/camera"/>
+<feature name="http://api.phonegap.com/1.0/file"/>
+<feature name="http://api.phonegap.com/1.0/network"/>
+</widget>
